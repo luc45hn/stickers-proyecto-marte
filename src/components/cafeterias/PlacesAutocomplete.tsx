@@ -35,7 +35,7 @@ export function PlacesAutocomplete({ onSelect, placeholder = 'Buscar cafetería.
     });
 
     return () => {
-      window.google?.maps?.event?.removeListener(listener);
+      (window as any).google?.maps?.event?.removeListener(listener);
     };
   }, [places]);
 
