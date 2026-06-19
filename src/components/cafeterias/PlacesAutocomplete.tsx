@@ -9,7 +9,7 @@ interface Props {
 export function PlacesAutocomplete({ onSelect, placeholder = 'Buscar cafetería...' }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const places = useMapsLibrary('places');
-  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+  const autocompleteRef = useRef<any>(null);
 
   useEffect(() => {
     if (!places || !inputRef.current) return;
