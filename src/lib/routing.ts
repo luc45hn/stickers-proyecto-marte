@@ -58,15 +58,5 @@ export function googleMapsNavLink(destino: Coordenada): string {
 }
 
 export function abrirNavegacion(destino: Coordenada): void {
-  const intentUrl = `intent://maps.google.com/maps?daddr=${destino.lat},${destino.lng}&dirflg=d#Intent;scheme=https;package=com.google.android.apps.maps;end`;
-  const webUrl = `https://maps.google.com/maps?daddr=${destino.lat},${destino.lng}&dirflg=d`;
-
-  try {
-    window.location.href = intentUrl;
-    setTimeout(() => {
-      window.open(webUrl, '_blank');
-    }, 1500);
-  } catch {
-    window.open(webUrl, '_blank');
-  }
+  window.location.href = `intent://maps.google.com/maps?daddr=${destino.lat},${destino.lng}&dirflg=d#Intent;scheme=https;package=com.google.android.apps.maps;end`;
 }
