@@ -58,18 +58,15 @@ export function googleMapsNavLink(destino: Coordenada): string {
 }
 
 export function abrirNavegacion(destino: Coordenada): void {
-  const androidUrl = `google.navigation:q=${destino.lat},${destino.lng}`;
-  const webUrl = `https://www.google.com/maps/dir/?api=1&destination=${destino.lat},${destino.lng}&travelmode=driving`;
+  const intentUrl = `intent://maps.google.com/maps?daddr=${destino.lat},${destino.lng}&dirflg=d#Intent;scheme=https;package=com.google.android.apps.maps;end`;
+  const webUrl = `https://maps.google.com/maps?daddr=${destino.lat},${destino.lng}&dirflg=d`;
 
-  const link = document.createElement('a');
-  link.href = androidUrl;
-  link.style.display = 'none';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-
-  // Fallback al web después de 1.5s si el esquema no abrió
-  setTimeout(() => {
+  try {
+    window.location.href = intentUrl;
+    setTimeout(() => {
+      window.open(webUrl, '_blank');
+    }, 1500);
+  } catch {
     window.open(webUrl, '_blank');
-  }, 1500);
+  }
 }
